@@ -2,50 +2,2034 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="css/style.css">
-  <title>Mmedara's Portfolio Site</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mmedara Umana · Executive &amp; Operations Partner</title>
+
+  <!-- Google Fonts: Glamore (Playfair Display) + Inter -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&display=swap"
+    rel="stylesheet" />
+
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+  <style>
+    /* ═══════════════════════════════════════════════
+           JAKUB KREHEL · UI PATTERNS
+           Minimal · Dark · Geometric · Glass-morphism
+           ═══════════════════════════════════════════════ */
+
+    /* ─── RESET & BASE ─── */
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-primary: #0a0c10;
+      --bg-secondary: #10141c;
+      --bg-card: rgba(255, 255, 255, 0.03);
+      --bg-card-hover: rgba(255, 255, 255, 0.06);
+      --bg-glass: rgba(255, 255, 255, 0.04);
+      --bg-glass-border: rgba(255, 255, 255, 0.06);
+      --accent: #5bd0f7;
+      --accent-dim: rgba(91, 208, 247, 0.10);
+      --accent-glow: rgba(91, 208, 247, 0.15);
+      --text-primary: #f0f2f6;
+      --text-secondary: #a8b5c9;
+      --text-muted: #5f728b;
+      --radius: 20px;
+      --radius-sm: 12px;
+      --transition: 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+      --shadow-card: 0 12px 48px rgba(0, 0, 0, 0.5);
+      --shadow-glow: 0 0 60px rgba(91, 208, 247, 0.06);
+      --font-heading: 'Playfair Display', 'Georgia', serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --border-subtle: rgba(255, 255, 255, 0.04);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    ::selection {
+      background: var(--accent);
+      color: #0a0c10;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    a:hover {
+      color: #8ae0ff;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    /* ─── SCROLLBAR ─── */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg-primary);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--accent-dim);
+      border-radius: 8px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--accent);
+    }
+
+    /* ─── ANIMATED BG CANVAS ─── */
+    #particle-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.6;
+    }
+
+    /* ─── GLAMORE HEADINGS ─── */
+    h1,
+    h2,
+    h3,
+    h4,
+    .glamore {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .glamore-italic {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-style: italic;
+    }
+
+    /* ─── GEOMETRIC BG ELEMENTS ─── */
+    .geo-ring {
+      position: fixed;
+      border-radius: 50%;
+      border: 1px solid rgba(91, 208, 247, 0.04);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .geo-ring-1 {
+      width: 60vw;
+      height: 60vw;
+      top: -20vw;
+      right: -10vw;
+    }
+
+    .geo-ring-2 {
+      width: 40vw;
+      height: 40vw;
+      bottom: -10vw;
+      left: -10vw;
+      border-color: rgba(91, 208, 247, 0.03);
+    }
+
+    .geo-ring-3 {
+      width: 20vw;
+      height: 20vw;
+      top: 40vh;
+      left: 5vw;
+      border-color: rgba(91, 208, 247, 0.05);
+    }
+
+    .geo-dot-grid {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      background-image:
+        radial-gradient(circle at 1px 1px, rgba(91, 208, 247, 0.06) 1px, transparent 0);
+      background-size: 48px 48px;
+      opacity: 0.5;
+    }
+
+    /* ─── PARALLAX HERO ─── */
+    .hero {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      overflow: hidden;
+    }
+
+    .hero-parallax-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 120%;
+      z-index: 0;
+      background:
+        radial-gradient(ellipse at 30% 40%, rgba(91, 208, 247, 0.06) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 60%, rgba(91, 208, 247, 0.03) 0%, transparent 40%),
+        radial-gradient(ellipse at 50% 80%, rgba(91, 208, 247, 0.02) 0%, transparent 50%);
+      will-change: transform;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 880px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 6px 24px;
+      border-radius: 100px;
+      background: var(--bg-glass);
+      border: 1px solid var(--bg-glass-border);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      color: var(--accent);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      margin-bottom: 32px;
+      font-family: var(--font-body);
+      transition: var(--transition);
+    }
+
+    .hero-badge:hover {
+      border-color: rgba(91, 208, 247, 0.20);
+      background: rgba(91, 208, 247, 0.06);
+    }
+
+    .hero h1 {
+      font-size: clamp(3.2rem, 10vw, 5.6rem);
+      font-weight: 800;
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+      margin-bottom: 20px;
+      font-family: var(--font-heading);
+    }
+
+    .hero h1 .highlight {
+      color: var(--accent);
+      position: relative;
+      display: inline-block;
+    }
+
+    .hero h1 .highlight::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 4px;
+      width: 100%;
+      height: 4px;
+      background: var(--accent);
+      opacity: 0.25;
+      border-radius: 4px;
+    }
+
+    .hero .subhead {
+      font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+      color: var(--text-secondary);
+      max-width: 620px;
+      margin: 0 auto 36px;
+      font-weight: 400;
+      line-height: 1.8;
+      font-family: var(--font-body);
+      letter-spacing: 0.01em;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 38px;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+      font-family: var(--font-body);
+      background: transparent;
+      color: var(--text-primary);
+      letter-spacing: 0.01em;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #0a0c10;
+      box-shadow: 0 4px 32px rgba(91, 208, 247, 0.25);
+    }
+
+    .btn-primary:hover {
+      background: #8ae0ff;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 48px rgba(91, 208, 247, 0.35);
+      color: #0a0c10;
+    }
+
+    .btn-outline {
+      border: 1.5px solid rgba(255, 255, 255, 0.10);
+      color: var(--text-primary);
+      background: var(--bg-glass);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      background: var(--accent-dim);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 32px rgba(91, 208, 247, 0.06);
+    }
+
+    .hero-scroll-indicator {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      color: var(--text-muted);
+      font-size: 0.65rem;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      animation: bounce-down 2.8s infinite;
+      font-family: var(--font-body);
+      opacity: 0.6;
+    }
+
+    .hero-scroll-indicator i {
+      font-size: 1.2rem;
+      color: var(--accent);
+      opacity: 0.6;
+    }
+
+    @keyframes bounce-down {
+
+      0%,
+      100% {
+        transform: translateX(-50%) translateY(0);
+        opacity: 0.6;
+      }
+
+      50% {
+        transform: translateX(-50%) translateY(10px);
+        opacity: 1;
+      }
+    }
+
+    /* ─── SECTION COMMON ─── */
+    section {
+      position: relative;
+      z-index: 1;
+      padding: 100px 0;
+    }
+
+    .section-label {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--accent);
+      background: var(--accent-dim);
+      padding: 4px 18px;
+      border-radius: 100px;
+      margin-bottom: 14px;
+      border: 1px solid rgba(91, 208, 247, 0.06);
+      font-family: var(--font-body);
+    }
+
+    .section-title {
+      font-size: clamp(2.2rem, 4vw, 3rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 14px;
+      font-family: var(--font-heading);
+      line-height: 1.12;
+    }
+
+    .section-title .highlight {
+      color: var(--accent);
+    }
+
+    .section-subtitle {
+      color: var(--text-secondary);
+      max-width: 560px;
+      font-size: 1.05rem;
+      line-height: 1.8;
+      font-family: var(--font-body);
+      font-weight: 400;
+    }
+
+    .section-header {
+      margin-bottom: 60px;
+    }
+
+    .section-header.centered {
+      text-align: center;
+    }
+
+    .section-header.centered .section-subtitle {
+      margin: 0 auto;
+    }
+
+    /* ─── GLASS CARD ─── */
+    .glass-card {
+      background: var(--bg-glass);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--bg-glass-border);
+      border-radius: var(--radius);
+      transition: var(--transition);
+    }
+
+    .glass-card:hover {
+      background: var(--bg-card-hover);
+      border-color: rgba(255, 255, 255, 0.08);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-card);
+    }
+
+    /* ─── INTRODUCTION ─── */
+    #intro {
+      background: var(--bg-secondary);
+      position: relative;
+    }
+
+    #intro::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(91, 208, 247, 0.10), transparent);
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: center;
+    }
+
+    .intro-text p {
+      color: var(--text-secondary);
+      margin-bottom: 18px;
+      font-size: 1rem;
+      line-height: 1.9;
+      font-family: var(--font-body);
+      font-weight: 400;
+    }
+
+    .intro-text p strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .intro-text .signoff {
+      font-family: var(--font-heading);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-top: 16px;
+      font-style: italic;
+      letter-spacing: -0.02em;
+    }
+
+    .intro-image {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .intro-image .avatar-frame {
+      width: 100%;
+      max-width: 360px;
+      aspect-ratio: 1/1;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-dim), transparent 70%);
+      padding: 3px;
+      box-shadow: var(--shadow-glow);
+    }
+
+    .intro-image .avatar-frame .avatar-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: var(--bg-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 6.5rem;
+      font-weight: 300;
+      color: var(--accent);
+      border: 1px solid rgba(91, 208, 247, 0.06);
+      font-family: var(--font-heading);
+    }
+
+    /* ─── MY OFFER ─── */
+    #offer {
+      background: var(--bg-primary);
+    }
+
+    .offer-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .offer-card {
+      padding: 34px 30px;
+      background: var(--bg-glass);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--bg-glass-border);
+      border-radius: var(--radius);
+      transition: var(--transition);
+    }
+
+    .offer-card:hover {
+      background: var(--bg-card-hover);
+      border-color: rgba(91, 208, 247, 0.08);
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-card);
+    }
+
+    .offer-card .icon {
+      font-size: 2rem;
+      color: var(--accent);
+      margin-bottom: 16px;
+      display: block;
+      opacity: 0.8;
+    }
+
+    .offer-card h4 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      font-family: var(--font-heading);
+    }
+
+    .offer-card p {
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+      line-height: 1.8;
+      font-family: var(--font-body);
+    }
+
+    .offer-card ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 12px;
+    }
+
+    .offer-card ul li {
+      padding-left: 22px;
+      position: relative;
+      color: var(--text-secondary);
+      font-size: 0.88rem;
+      line-height: 1.7;
+      margin-bottom: 4px;
+      font-family: var(--font-body);
+    }
+
+    .offer-card ul li::before {
+      content: '▹';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 0.8rem;
+      opacity: 0.7;
+    }
+
+    /* ─── TOOLS ─── */
+    #tools {
+      background: var(--bg-secondary);
+      position: relative;
+    }
+
+    .tools-table-wrap {
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--bg-glass);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--bg-glass-border);
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .tools-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--font-body);
+    }
+
+    .tools-table th,
+    .tools-table td {
+      padding: 16px 28px;
+      text-align: left;
+      border-bottom: 1px solid var(--bg-glass-border);
+    }
+
+    .tools-table th {
+      background: rgba(255, 255, 255, 0.02);
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+    }
+
+    .tools-table td {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    .tools-table td:last-child {
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    .tools-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* ─── CO-CREATE ─── */
+    #cocreate {
+      background: var(--bg-primary);
+    }
+
+    .cocreate-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 18px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .step {
+      padding: 28px 22px;
+      text-align: center;
+      background: var(--bg-glass);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--bg-glass-border);
+      border-radius: var(--radius);
+      transition: var(--transition);
+    }
+
+    .step:hover {
+      background: var(--bg-card-hover);
+      border-color: rgba(91, 208, 247, 0.06);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-card);
+    }
+
+    .step .num {
+      display: inline-block;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--accent-dim);
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 1rem;
+      line-height: 38px;
+      margin-bottom: 14px;
+      font-family: var(--font-heading);
+      border: 1px solid rgba(91, 208, 247, 0.06);
+    }
+
+    .step h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      font-family: var(--font-heading);
+    }
+
+    .step p {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      line-height: 1.7;
+      font-family: var(--font-body);
+    }
+
+    /* ─── CASE STUDIES ─── */
+    #case-studies {
+      background: var(--bg-secondary);
+    }
+
+    .case-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .case-card {
+      padding: 32px 28px;
+      background: var(--bg-glass);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--bg-glass-border);
+      border-radius: var(--radius);
+      transition: var(--transition);
+    }
+
+    .case-card:hover {
+      background: var(--bg-card-hover);
+      border-color: rgba(91, 208, 247, 0.06);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-card);
+    }
+
+    .case-card.full {
+      grid-column: 1 / -1;
+    }
+
+    .case-card .case-tag {
+      display: inline-block;
+      font-size: 0.6rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent);
+      background: var(--accent-dim);
+      padding: 2px 16px;
+      border-radius: 100px;
+      margin-bottom: 14px;
+      font-family: var(--font-body);
+      border: 1px solid rgba(91, 208, 247, 0.04);
+    }
+
+    .case-card h4 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      font-family: var(--font-heading);
+    }
+
+    .case-card p {
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+      line-height: 1.8;
+      font-family: var(--font-body);
+    }
+
+    .case-card .case-result {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--bg-glass-border);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 20px;
+    }
+
+    .case-card .case-result span {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-family: var(--font-body);
+    }
+
+    .case-card .case-result span i {
+      color: var(--accent);
+      margin-right: 6px;
+      opacity: 0.7;
+    }
+
+    .case-card .case-tools {
+      margin-top: 14px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-family: var(--font-body);
+    }
+
+    .case-card .case-tools strong {
+      color: var(--text-secondary);
+      font-weight: 600;
+    }
+
+    /* ─── HOW WE WORK ─── */
+    #work-together {
+      background: var(--bg-primary);
+    }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .work-block {
+      padding: 32px 28px;
+      background: var(--bg-glass);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--bg-glass-border);
+      border-radius: var(--radius);
+      transition: var(--transition);
+    }
+
+    .work-block:hover {
+      background: var(--bg-card-hover);
+      border-color: rgba(91, 208, 247, 0.06);
+    }
+
+    .work-block h4 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      font-family: var(--font-heading);
+    }
+
+    .work-block h4 i {
+      color: var(--accent);
+      margin-right: 10px;
+      opacity: 0.7;
+    }
+
+    .work-block p,
+    .work-block li {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.8;
+      font-family: var(--font-body);
+    }
+
+    .work-block ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .work-block ul li {
+      padding-left: 22px;
+      position: relative;
+      margin-bottom: 6px;
+    }
+
+    .work-block ul li::before {
+      content: '▹';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 0.8rem;
+      opacity: 0.6;
+    }
+
+    .work-block .mini-table {
+      width: 100%;
+      margin-top: 12px;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+      font-family: var(--font-body);
+    }
+
+    .work-block .mini-table td {
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--bg-glass-border);
+      color: var(--text-secondary);
+    }
+
+    .work-block .mini-table td:first-child {
+      color: var(--text-primary);
+      font-weight: 500;
+      width: 28%;
+    }
+
+    .work-block .mini-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* ─── DAY IN THE LIFE ─── */
+    #day-in-life {
+      background: var(--bg-secondary);
+    }
+
+    .day-timeline {
+      max-width: 820px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .day-item {
+      padding: 22px 30px;
+      background: var(--bg-glass);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--bg-glass-border);
+      border-radius: var(--radius);
+      border-left: 3px solid var(--accent);
+      transition: var(--transition);
+    }
+
+    .day-item:hover {
+      background: var(--bg-card-hover);
+      border-color: rgba(91, 208, 247, 0.08);
+    }
+
+    .day-item .time {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 6px;
+      font-family: var(--font-body);
+    }
+
+    .day-item ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .day-item ul li {
+      padding-left: 20px;
+      position: relative;
+      color: var(--text-secondary);
+      font-size: 0.88rem;
+      line-height: 1.7;
+      font-family: var(--font-body);
+    }
+
+    .day-item ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      opacity: 0.4;
+    }
+
+    /* ─── CONTACT ─── */
+    #contact {
+      background: var(--bg-primary);
+      padding-bottom: 60px;
+    }
+
+    .contact-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .contact-info h4 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      font-family: var(--font-heading);
+    }
+
+    .contact-info p {
+      color: var(--text-secondary);
+      margin-bottom: 28px;
+      line-height: 1.8;
+      font-family: var(--font-body);
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .contact-item .icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--accent-dim);
+      border: 1px solid rgba(91, 208, 247, 0.04);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-size: 1rem;
+      flex-shrink: 0;
+      transition: var(--transition);
+    }
+
+    .contact-item:hover .icon {
+      background: rgba(91, 208, 247, 0.15);
+      border-color: rgba(91, 208, 247, 0.10);
+    }
+
+    .contact-item .text {
+      font-size: 0.95rem;
+      font-family: var(--font-body);
+    }
+
+    .contact-item .text .label {
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      display: block;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .social-links a {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--bg-glass);
+      border: 1px solid var(--bg-glass-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      transition: var(--transition);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .social-links a:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+      background: var(--accent-dim);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(91, 208, 247, 0.06);
+    }
+
+    .contact-form {
+      padding: 36px 32px;
+      background: var(--bg-glass);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--bg-glass-border);
+      border-radius: var(--radius);
+    }
+
+    .contact-form .form-group {
+      margin-bottom: 18px;
+    }
+
+    .contact-form label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--text-secondary);
+      font-family: var(--font-body);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 14px 18px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--bg-glass-border);
+      background: rgba(0, 0, 0, 0.3);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      transition: var(--transition);
+      outline: none;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px var(--accent-dim);
+      background: rgba(0, 0, 0, 0.4);
+    }
+
+    .contact-form input::placeholder,
+    .contact-form textarea::placeholder {
+      color: var(--text-muted);
+    }
+
+    .contact-form textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .contact-form .btn {
+      width: 100%;
+      justify-content: center;
+      margin-top: 4px;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      position: relative;
+      z-index: 1;
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--bg-glass-border);
+      padding: 36px 0;
+      text-align: center;
+    }
+
+    footer .socials {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    footer .socials a {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--bg-glass);
+      border: 1px solid var(--bg-glass-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-secondary);
+      font-size: 1rem;
+      transition: var(--transition);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    footer .socials a:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+      background: var(--accent-dim);
+      transform: translateY(-3px);
+    }
+
+    footer p {
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      font-family: var(--font-body);
+    }
+
+    footer p a {
+      color: var(--accent);
+    }
+
+    footer p a:hover {
+      color: #8ae0ff;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 992px) {
+      .intro-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .intro-image .avatar-frame {
+        max-width: 240px;
+      }
+
+      .contact-wrapper {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+
+      .case-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .work-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .offer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      section {
+        padding: 70px 0;
+      }
+
+      .hero {
+        min-height: 90vh;
+        padding: 100px 20px 60px;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.4rem, 12vw, 3.4rem);
+      }
+
+      .offer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .tools-table th,
+      .tools-table td {
+        padding: 12px 18px;
+        font-size: 0.82rem;
+      }
+
+      .cocreate-steps {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .day-item {
+        padding: 18px 20px;
+      }
+
+      .contact-form {
+        padding: 24px 20px;
+      }
+
+      .case-card {
+        padding: 24px 20px;
+      }
+
+      .work-block {
+        padding: 24px 20px;
+      }
+
+      .geo-ring-1,
+      .geo-ring-2,
+      .geo-ring-3 {
+        display: none;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .cocreate-steps {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-cta .btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .tools-table th,
+      .tools-table td {
+        padding: 10px 14px;
+        font-size: 0.75rem;
+        display: block;
+        width: 100%;
+        border-bottom: none;
+      }
+
+      .tools-table th {
+        background: rgba(255, 255, 255, 0.02);
+        padding-top: 14px;
+      }
+
+      .tools-table th:not(:first-child) {
+        display: none;
+      }
+
+      .tools-table td {
+        padding: 6px 14px;
+      }
+
+      .tools-table td:last-child {
+        padding-bottom: 14px;
+        border-bottom: 1px solid var(--bg-glass-border);
+      }
+
+      .tools-table tr {
+        display: block;
+      }
+
+      .tools-table-wrap {
+        overflow-x: auto;
+      }
+
+      .social-links {
+        flex-wrap: wrap;
+      }
+    }
+  </style>
 </head>
 
 <body>
-  <header>
-    <h1 class="name">Mmedara Umana</h1>
-    <p>
-      Front-end developer | Executive Assistant | Data Analyst
-      <span class="contact-links">
-        <a href="mailto:umana.mmedara@gmail.com"><img src="img/icons/icons8-email-50.png"
-            alt="Email Icon linking to email address for Mmedara Umana"></a>
-        <a href="https://github.com/MmedaraU"><img src="img/icons/icons8-github-50.png"
-            alt="Github Icon linking to Github profile for Mmedara Umana"></a>
-        <a
-          href="https://www.linkedin.com/in/mmedara-umana-7627041b6?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><img
-            src="img/icons/icons8-linkedin-50.png"
-            alt="LinkedIn Icon linking to LinkedIn profile for Mmedara Umana"></a>
-        <a href="https://twitter.com/MmedaraUmana"><img src="img/icons/icons8-twitter-50.png"
-            alt="Twitter Icon linking to Twitter Profile for Mmedara Umana"></a>
-      </span>
-    </p>
-    </div>
-  </header>
 
-  <section>
-    <h2>About Me</h2>
-    <p>I'm a builder, fueled by relentless curiosity. I build websites (as an aspiring full-stack developer), systems
-      (as an
-      executive assistant), and insights (as a data analyst). I build stories through writing and community through
-      volunteering.
-    <p>I've discovered that my drive to create is my north star. I once thought I couldn't be an artist because I
-      couldn't
-      draw, until I found the art in code. I became an executive assistant because I love building people up. I analyze
-      data
-      to build a better financial understanding.</p>
-    <p>This portfolio is my gallery. It's a look at how I build things - from spreadsheets to web pages.</p>
-    <p>Welcome to the middle of the story—a work in progress, built on curiosity.</p>
+  <!-- ─── GEOMETRIC BG ELEMENTS ─── -->
+  <div class="geo-dot-grid"></div>
+  <div class="geo-ring geo-ring-1"></div>
+  <div class="geo-ring geo-ring-2"></div>
+  <div class="geo-ring geo-ring-3"></div>
+
+  <!-- ─── CANVAS: ANIMATED BG ─── -->
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- ════════════════════════════════════════════════
+    HERO
+    ════════════════════════════════════════════════ -->
+  <section class="hero" id="home">
+    <div class="hero-parallax-bg" id="parallaxBg"></div>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <i class="fas fa-star" style="margin-right:8px;"></i> Executive &amp; Operations Partner
+      </div>
+      <h1>
+        I'm <span class="highlight">Mmedara Umana</span>
+      </h1>
+      <p class="subhead">
+        I build alongside leaders who have outgrown their systems —
+        bringing order, clarity, and momentum to your operations.
+      </p>
+      <div class="hero-cta">
+        <a href="#contact" class="btn btn-primary">
+          <i class="fas fa-paper-plane"></i> Let's build together
+        </a>
+        <a href="#offer" class="btn btn-outline">
+          <i class="fas fa-chevron-right"></i> Explore my offer
+        </a>
+      </div>
+    </div>
+    <div class="hero-scroll-indicator">
+      <span>Scroll</span>
+      <i class="fas fa-chevron-down"></i>
+    </div>
   </section>
 
+  <!-- ════════════════════════════════════════════════
+    INTRODUCTION
+    ════════════════════════════════════════════════ -->
+  <section id="intro">
+    <div class="container">
+      <div class="intro-grid">
+        <div class="intro-text">
+          <span class="section-label">Introduction</span>
+          <h2 class="section-title">
+            Building <span class="highlight">calm, smooth,</span> productive ways of working
+          </h2>
+          <p>
+            I'm Mmedara Umana, and I build alongside leaders, founders, and teams
+            who have outgrown their existing systems and need a partner to bring
+            <strong>order, clarity, and momentum</strong> to their operations.
+          </p>
+          <p>
+            Whether you need high-level executive support, operational coordination,
+            or a strategic partner to keep projects moving, I adapt to what you need.
+            I don't just take tasks. I build systems that work whether I'm in the
+            room or not.
+          </p>
+          <p>
+            I work with leaders across creative, tech, nonprofit, and founder-led
+            organisations — where every hour saved on administration means more
+            time for impact.
+          </p>
+          <div class="signoff">— Let's build together.</div>
+        </div>
+        <div class="intro-image">
+          <div class="avatar-frame">
+            <div class="avatar-inner">
+              <i class="fas fa-user-circle"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════
+    MY OFFER
+    ════════════════════════════════════════════════ -->
+  <section id="offer">
+    <div class="container">
+      <div class="section-header centered">
+        <span class="section-label">My Offer</span>
+        <h2 class="section-title">What I <span class="highlight">co-create</span> with you</h2>
+        <p class="section-subtitle">
+          Four pillars of support that scale from daily operations to strategic initiatives.
+        </p>
+      </div>
+      <div class="offer-grid">
+        <div class="offer-card">
+          <span class="icon"><i class="fas fa-calendar-check"></i></span>
+          <h4>Project &amp; Event Coordination</h4>
+          <p>I coordinate events, manage projects, and handle every logistical detail so you arrive prepared and
+            stress-free.</p>
+          <ul>
+            <li>Zero operational surprises during multi‑location or virtual events</li>
+            <li>More time to engage with stakeholders instead of solving problems</li>
+            <li>Confidence that every trip runs smoothly from departure to return</li>
+          </ul>
+        </div>
+        <div class="offer-card">
+          <span class="icon"><i class="fas fa-cogs"></i></span>
+          <h4>Operations &amp; Systems Management</h4>
+          <p>I organise your workflows, calendars, and operations into systems that actually work for you.</p>
+          <ul>
+            <li>Time back in your day</li>
+            <li>Meetings with agendas attached and follow‑ups scheduled</li>
+            <li>No more tasks falling through the cracks, even across time zones</li>
+          </ul>
+        </div>
+        <div class="offer-card">
+          <span class="icon"><i class="fas fa-lock"></i></span>
+          <h4>Information Management &amp; Confidentiality</h4>
+          <p>I handle all data with complete discretion and enterprise-grade password management.</p>
+          <ul>
+            <li>Complete peace of mind knowing your business stays your business</li>
+            <li>Quick and secure access to any document</li>
+            <li>A trusted partner who treats confidentiality as non‑negotiable</li>
+          </ul>
+        </div>
+        <div class="offer-card">
+          <span class="icon"><i class="fas fa-lightbulb"></i></span>
+          <h4>Anticipating Needs &amp; Handling Requests</h4>
+          <p>I spot problems before they reach you and resolve them behind the scenes.</p>
+          <ul>
+            <li>Fewer interruptions to your work</li>
+            <li>Real‑time solutions that keep you informed but not burdened</li>
+            <li>A partner who thinks two steps ahead so you can lead without constantly reacting</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════
+    TOOLS
+    ════════════════════════════════════════════════ -->
+  <section id="tools">
+    <div class="container">
+      <div class="section-header centered">
+        <span class="section-label">Toolkit</span>
+        <h2 class="section-title">Tools I <span class="highlight">work with</span></h2>
+        <p class="section-subtitle">
+          Proficient across a wide range of platforms — I adapt to your stack.
+        </p>
+      </div>
+      <div class="tools-table-wrap">
+        <table class="tools-table">
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Proficient Tools</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Communication</td>
+              <td>Slack, Zoom, Google Meet</td>
+            </tr>
+            <tr>
+              <td>Productivity &amp; Task Management</td>
+              <td>Notion, Trello, Microsoft Office 365, Google Workspace, Zoho Workspace</td>
+            </tr>
+            <tr>
+              <td>Travel &amp; Expense</td>
+              <td>Zoho Expense, Expensify</td>
+            </tr>
+            <tr>
+              <td>Document Management</td>
+              <td>Google Drive, DocuSign, Adobe Acrobat</td>
+            </tr>
+            <tr>
+              <td>Security</td>
+              <td>LastPass, KeePass, Bitwarden</td>
+            </tr>
+            <tr>
+              <td>Design &amp; Content</td>
+              <td>Canva</td>
+            </tr>
+            <tr>
+              <td>AI &amp; Automation</td>
+              <td>ChatGPT, Claude, Gemini, DeepSeek, Gamma, Zapier</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════
+    CO-CREATE
+    ════════════════════════════════════════════════ -->
+  <section id="cocreate">
+    <div class="container">
+      <div class="section-header centered">
+        <span class="section-label">Process</span>
+        <h2 class="section-title">How we <span class="highlight">co-create</span></h2>
+        <p class="section-subtitle">
+          Co-creation is not just an idea — it's how I work.
+        </p>
+      </div>
+      <div class="cocreate-steps">
+        <div class="step">
+          <div class="num">1</div>
+          <h4>Learn</h4>
+          <p>We start with a conversation where you teach me your priorities, communication style, and pain points. I
+            don't assume. I learn.</p>
+        </div>
+        <div class="step">
+          <div class="num">2</div>
+          <h4>Build</h4>
+          <p>I build a first version of a system — calendar, email, travel template, dashboard. You use it for a few
+            days and tell me what works.</p>
+        </div>
+        <div class="step">
+          <div class="num">3</div>
+          <h4>Refine</h4>
+          <p>Based on your feedback, I adjust. Sometimes we jump on a quick call; other times I send a video
+            walkthrough. The system becomes ours.</p>
+        </div>
+        <div class="step">
+          <div class="num">4</div>
+          <h4>Document</h4>
+          <p>Once the system works, I document it clearly. You can run it without me if needed — but you keep me because
+            I make it better over time.</p>
+        </div>
+        <div class="step">
+          <div class="num">5</div>
+          <h4>Review</h4>
+          <p>Every Monday for 20 minutes, we review what's working, what's not, and what to automate next.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════
+    CASE STUDIES
+    ════════════════════════════════════════════════ -->
+  <section id="case-studies">
+    <div class="container">
+      <div class="section-header centered">
+        <span class="section-label">Case Studies</span>
+        <h2 class="section-title">Systems I've <span class="highlight">built</span></h2>
+        <p class="section-subtitle">
+          Real-world examples of operational transformation.
+        </p>
+      </div>
+      <div class="case-grid">
+        <div class="case-card full">
+          <span class="case-tag">Custom Build</span>
+          <h4>Client Intake System</h4>
+          <p>
+            Built a complete intake system on top of the company's existing domain.
+            The form captures all client information, triggers real-time email
+            notifications, and feeds a secure dashboard with role-based toggles
+            that determine the exact response sent — ensuring consistent,
+            professional messaging every time.
+          </p>
+          <div class="case-result">
+            <span><i class="fas fa-clock"></i> 3–7 days → 2 hours</span>
+            <span><i class="fas fa-check-circle"></i> Consistent messaging</span>
+            <span><i class="fas fa-user-check"></i> Executive freed from routine correspondence</span>
+          </div>
+          <div class="case-tools">
+            <strong>Tools:</strong> HTML/CSS/JS, company email integration, shared dashboard
+          </div>
+        </div>
+
+        <div class="case-card">
+          <span class="case-tag">Template System</span>
+          <h4>The Command Center</h4>
+          <p>
+            A Notion dashboard template for executive clarity — adapted to Trello,
+            Asana, ClickUp, or any tool you already use. Zero setup time; we
+            customise in one session. Reduce context switching, track decisions,
+            and keep every meeting prep-ready.
+          </p>
+          <div class="case-result">
+            <span><i class="fas fa-tachometer-alt"></i> One dashboard instead of 5+ tabs</span>
+            <span><i class="fas fa-check-double"></i> Decisions tracked to completion</span>
+          </div>
+          <div class="case-tools">
+            <strong>Tools:</strong> Notion, Trello, Asana, ClickUp (tool-agnostic)
+          </div>
+        </div>
+
+        <div class="case-card">
+          <span class="case-tag">Email Management</span>
+          <h4>Inbox Zero System</h4>
+          <p>
+            A reusable email management system based on Inbox Zero, adapted for
+            busy executives. Auto-filters &amp; labels sort incoming mail in real
+            time. Email is checked 2–3 times per day, not continuously.
+          </p>
+          <div class="case-result">
+            <span><i class="fas fa-envelope-open"></i> Only what needs attention</span>
+            <span><i class="fas fa-search"></i> Everything searchable &amp; labelled</span>
+            <span><i class="fas fa-chart-line"></i> Email time cut by 50%+</span>
+          </div>
+          <div class="case-tools">
+            <strong>Tools:</strong> Gmail / Outlook (native filters &amp; rules)
+          </div>
+        </div>
+
+        <div class="case-card">
+          <span class="case-tag">Travel</span>
+          <h4>Travel Management Packet</h4>
+          <p>
+            A single, reusable travel packet that puts everything in one place:
+            budget breakdown, pre-departure checklist, detailed itinerary, local
+            support, time zone adjustments, and contingency plans.
+          </p>
+          <div class="case-result">
+            <span><i class="fas fa-plane"></i> Stress-free travel</span>
+            <span><i class="fas fa-file-pdf"></i> Everything in one PDF</span>
+            <span><i class="fas fa-hourglass-half"></i> Saves 2–3 hours per trip</span>
+          </div>
+          <div class="case-tools">
+            <strong>Tools:</strong> Google Docs, Zoho Expense, Google Calendar
+          </div>
+        </div>
+
+        <div class="case-card">
+          <span class="case-tag">Event Coordination</span>
+          <h4>Two Cities, One Weekend</h4>
+          <p>
+            Organised two beneficiary events in two cities over one weekend.
+            Coordinated vendor sourcing, procurement, participant outreach, and
+            real-time issue resolution — physically present for all three days.
+          </p>
+          <div class="case-result">
+            <span><i class="fas fa-users"></i> 120+ beneficiaries served</span>
+            <span><i class="fas fa-coins"></i> Under budget by 8%</span>
+            <span><i class="fas fa-copy"></i> Became the template for future events</span>
+          </div>
+          <div class="case-tools">
+            <strong>Tools:</strong> Google Sheets, WhatsApp, Google Forms
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════
+    HOW WE WORK
+    ════════════════════════════════════════════════ -->
+  <section id="work-together">
+    <div class="container">
+      <div class="section-header centered">
+        <span class="section-label">Partnership</span>
+        <h2 class="section-title">How we can <span class="highlight">work together</span></h2>
+        <p class="section-subtitle">
+          Onboarding, communication rhythms, and reporting — designed for clarity.
+        </p>
+      </div>
+      <div class="work-grid">
+        <div class="work-block">
+          <h4><i class="fas fa-rocket"></i> Onboarding: The First 5 Days</h4>
+          <table class="mini-table">
+            <tr>
+              <td>Day 1</td>
+              <td>Limited, revocable access to key tools. Dedicated encrypted device + 2FA.</td>
+            </tr>
+            <tr>
+              <td>Days 2–3</td>
+              <td>60-min call to review priorities, style, time zones, VIPs.</td>
+            </tr>
+            <tr>
+              <td>Day 4</td>
+              <td>Quiet inbox &amp; calendar management — then a handled summary for feedback.</td>
+            </tr>
+            <tr>
+              <td>Day 5</td>
+              <td>Adjust processes. I take over fully with a weekly check-in.</td>
+            </tr>
+          </table>
+        </div>
+        <div class="work-block">
+          <h4><i class="fas fa-comments"></i> Communication Rhythms</h4>
+          <ul>
+            <li><strong>Daily:</strong> Morning brief with top 3 priorities, meeting agendas, urgent requests.</li>
+            <li><strong>Weekly:</strong> 20-minute Monday sync to review the week ahead.</li>
+            <li><strong>Urgent:</strong> Flagged immediately via your preferred channel (call / text / Slack).</li>
+            <li>I never make commitments on your behalf without confirmation.</li>
+            <li>I adapt to your hours, not mine.</li>
+          </ul>
+        </div>
+        <div class="work-block">
+          <h4><i class="fas fa-chart-simple"></i> Reporting Style</h4>
+          <ul>
+            <li><strong>Inbox &amp; Calendar Reports:</strong> End-of-day summary of emails handled, meetings booked,
+              follow-ups.</li>
+            <li><strong>Project Updates:</strong> Weekly status dashboards with progress, blockers, next steps.</li>
+            <li><strong>Travel &amp; Expense Summaries:</strong> Post-trip one-pagers with receipts and breakdowns.</li>
+            <li>All reports are visual, concise, and designed to be read under 5 minutes.</li>
+          </ul>
+        </div>
+        <div class="work-block">
+          <h4><i class="fas fa-clock"></i> Core Hours &amp; Boundaries</h4>
+          <ul>
+            <li>My core hours align to your standard workday.</li>
+            <li>Outside hours: I check Slack once, roughly two hours after your end-of-day, for urgent matters only.
+            </li>
+            <li>Time zone guarantee: I never ask you to take meetings outside your defined working hours.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════
+    DAY IN THE LIFE
+    ════════════════════════════════════════════════ -->
+  <section id="day-in-life">
+    <div class="container">
+      <div class="section-header centered">
+        <span class="section-label">Rhythm</span>
+        <h2 class="section-title">A day in the <span class="highlight">life</span></h2>
+        <p class="section-subtitle">
+          How I show up, every day, to keep you moving forward.
+        </p>
+      </div>
+      <div class="day-timeline">
+        <div class="day-item">
+          <div class="time">First 30–60 minutes</div>
+          <ul>
+            <li>Scan and triage email using Inbox Zero, flagging urgent and drafting replies</li>
+            <li>Send a daily morning brief with top 3 priorities, meeting agendas and urgent requests</li>
+            <li>Review calendar for conflicts, back-to-back meetings, or missing prep time</li>
+            <li>Proactively block focus time or reschedule non-urgent items</li>
+          </ul>
+        </div>
+        <div class="day-item">
+          <div class="time">Mid-morning</div>
+          <ul>
+            <li>Prepare meeting materials (agenda, documents, attendee summaries)</li>
+            <li>Update project dashboards and nudge team/vendors on pending tasks</li>
+            <li>Handle urgent requests (travel changes, scheduling conflicts) without interrupting you</li>
+          </ul>
+        </div>
+        <div class="day-item">
+          <div class="time">Early afternoon</div>
+          <ul>
+            <li>Process incoming emails and schedule new meeting requests</li>
+            <li>Confirm appointments for the next day</li>
+          </ul>
+        </div>
+        <div class="day-item">
+          <div class="time">Last hour of your workday</div>
+          <ul>
+            <li>Send end-of-day summary: emails handled, follow-ups, tasks completed, tomorrow's preview</li>
+            <li>Prepare for next day — reschedule low-priority items, draft tomorrow's morning brief</li>
+          </ul>
+        </div>
+        <div class="day-item">
+          <div class="time">Weekly / As needed</div>
+          <ul>
+            <li>20-minute Monday sync</li>
+            <li>Friday recap on wins, blockers, and preparation for the next week</li>
+          </ul>
+        </div>
+        <div class="day-item">
+          <div class="time">Monthly system review</div>
+          <ul>
+            <li>Review email filters and rules — remove outdated, add new senders, adjust labels</li>
+            <li>Audit automations — confirm they're working correctly</li>
+            <li>Review project management dashboard — archive, rename, add priority categories</li>
+            <li>Document system changes in our shared handover note</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════
+    CONTACT
+    ════════════════════════════════════════════════ -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-header centered">
+        <span class="section-label">Connect</span>
+        <h2 class="section-title">Let's make it <span class="highlight">official</span></h2>
+        <p class="section-subtitle">
+          I'm genuinely excited about the possibility of building alongside you.
+          Let's talk about how we can build the systems you need, together.
+        </p>
+      </div>
+      <div class="contact-wrapper">
+        <div class="contact-info">
+          <h4>Reach out</h4>
+          <p>
+            Whether you're a founder, a leader, or a team ready to scale —
+            I'd love to hear about your vision and your challenges.
+          </p>
+          <div class="contact-item">
+            <div class="icon"><i class="fas fa-envelope"></i></div>
+            <div class="text">
+              <span class="label">Email</span>
+              umana.mmedara@gmail.com
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="icon"><i class="fas fa-phone-alt"></i></div>
+            <div class="text">
+              <span class="label">Phone</span>
+              <span style="color:var(--text-secondary);">+234 (0) 80 1234 5678</span>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
+            <div class="text">
+              <span class="label">Location</span>
+              <span style="color:var(--text-secondary);">Remote · Worldwide</span>
+            </div>
+          </div>
+          <div class="social-links">
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+            <a href="#" aria-label="Meeting Link"><i class="fas fa-calendar-plus"></i></a>
+          </div>
+        </div>
+        <form class="contact-form" id="contactForm">
+          <div class="form-group">
+            <label for="name">Your name</label>
+            <input type="text" id="name" placeholder="e.g. Adeola O." required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" id="email" placeholder="you@example.com" required />
+          </div>
+          <div class="form-group">
+            <label for="message">Tell me about your needs</label>
+            <textarea id="message" placeholder="What's the biggest challenge you're facing right now?"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">
+            <i class="fas fa-paper-plane"></i> Send message
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════
+    FOOTER
+    ════════════════════════════════════════════════ -->
+  <footer>
+    <div class="container">
+      <div class="socials">
+        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="#" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+        <a href="#" aria-label="Meeting Link"><i class="fas fa-calendar-plus"></i></a>
+      </div>
+      <p>
+        &copy; 2026 Mmedara Umana · Built with <i class="fas fa-heart"
+          style="color:var(--accent);font-size:0.65rem;"></i>
+        · Hosted on <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- ───────────────────────────────────────────────────────────────
+    JAVASCRIPT
+    ─────────────────────────────────────────────────────────────── -->
+  <script>
+    (function () {
+      'use strict';
+
+      /* ─── 1. PARTICLE SYSTEM ─── */
+      const canvas = document.getElementById('particle-canvas');
+      const ctx = canvas.getContext('2d');
+      let W, H;
+      let particles = [];
+      const MAX_PARTICLES = 70;
+      const CONNECTION_DIST = 130;
+      const MOUSE_RADIUS = 140;
+
+      let mouseX = -9999;
+      let mouseY = -9999;
+
+      function resizeCanvas() {
+        W = canvas.width = window.innerWidth;
+        H = canvas.height = window.innerHeight;
+      }
+      window.addEventListener('resize', resizeCanvas);
+      resizeCanvas();
+
+      window.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+      });
+      window.addEventListener('mouseleave', () => {
+        mouseX = -9999;
+        mouseY = -9999;
+      });
+
+      class Particle {
+        constructor() { this.reset(); }
+        reset() {
+          this.x = Math.random() * W;
+          this.y = Math.random() * H;
+          this.size = Math.random() * 2.8 + 0.8;
+          this.speedX = (Math.random() - 0.5) * 0.35;
+          this.speedY = (Math.random() - 0.5) * 0.35;
+          this.opacity = Math.random() * 0.35 + 0.15;
+        }
+        update() {
+          this.x += this.speedX;
+          this.y += this.speedY;
+          const dx = this.x - mouseX;
+          const dy = this.y - mouseY;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < MOUSE_RADIUS && dist > 0) {
+            const force = (MOUSE_RADIUS - dist) / MOUSE_RADIUS * 0.4;
+            this.x += (dx / dist) * force;
+            this.y += (dy / dist) * force;
+          }
+          if (this.x < -10) this.x = W + 10;
+          if (this.x > W + 10) this.x = -10;
+          if (this.y < -10) this.y = H + 10;
+          if (this.y > H + 10) this.y = -10;
+        }
+        draw() {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(91, 208, 247, ${this.opacity})`;
+          ctx.fill();
+        }
+      }
+
+      for (let i = 0; i < MAX_PARTICLES; i++) {
+        particles.push(new Particle());
+      }
+
+      function drawConnections() {
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i + 1; j < particles.length; j++) {
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < CONNECTION_DIST) {
+              const alpha = (1 - dist / CONNECTION_DIST) * 0.15;
+              ctx.beginPath();
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(particles[j].x, particles[j].y);
+              ctx.strokeStyle = `rgba(91, 208, 247, ${alpha})`;
+              ctx.lineWidth = 0.5;
+              ctx.stroke();
+            }
+          }
+        }
+      }
+
+      function animateParticles() {
+        ctx.clearRect(0, 0, W, H);
+        particles.forEach(p => {
+          p.update();
+          p.draw();
+        });
+        drawConnections();
+        requestAnimationFrame(animateParticles);
+      }
+      animateParticles();
+
+      let resizeTimeout;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+          particles.forEach(p => {
+            p.x = Math.random() * W;
+            p.y = Math.random() * H;
+          });
+        }, 300);
+      });
+
+      /* ─── 2. PARALLAX HERO ─── */
+      const parallaxBg = document.getElementById('parallaxBg');
+      const heroSection = document.querySelector('.hero');
+
+      function updateParallax() {
+        const rect = heroSection.getBoundingClientRect();
+        const scrollY = window.scrollY;
+        const offset = rect.top + scrollY;
+        const progress = (scrollY - offset + window.innerHeight) / (window.innerHeight + rect.height);
+        const moveY = Math.min(Math.max(progress, 0), 1) * 10;
+        parallaxBg.style.transform = `translateY(${moveY}px) scale(1)`;
+      }
+
+      window.addEventListener('scroll', updateParallax, { passive: true });
+      window.addEventListener('resize', updateParallax, { passive: true });
+      requestAnimationFrame(updateParallax);
+
+      /* ─── 3. CONTACT FORM ─── */
+      const form = document.getElementById('contactForm');
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const message = document.getElementById('message').value.trim();
+        if (!name || !email || !message) {
+          alert('Please fill out all fields.');
+          return;
+        }
+        if (!email.includes('@') || !email.includes('.')) {
+          alert('Please enter a valid email address.');
+          return;
+        }
+        alert(`Thank you, ${name}! Your message has been sent. I'll be in touch soon.`);
+        form.reset();
+      });
+
+      /* ─── 4. SMOOTH SCROLL ─── */
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          const href = this.getAttribute('href');
+          if (href === '#') return;
+          const target = document.querySelector(href);
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      });
+
+    })();
+  </script>
 </body>
 
 </html>
