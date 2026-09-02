@@ -266,7 +266,7 @@
     .hero .subhead {
       font-size: clamp(1.05rem, 1.6vw, 1.25rem);
       color: var(--text-secondary);
-      max-width: 620px;
+      max-width: 720px;
       margin: 0 auto 36px;
       font-weight: 400;
       line-height: 1.8;
@@ -456,11 +456,9 @@
       background: linear-gradient(90deg, transparent, rgba(91, 208, 247, 0.10), transparent);
     }
 
-    .intro-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 56px;
-      align-items: center;
+    .intro-text {
+      max-width: 820px;
+      margin: 0 auto 48px;
     }
 
     .intro-text p {
@@ -479,7 +477,7 @@
 
     .intro-text .signoff {
       font-family: var(--font-heading);
-      font-size: 1.4rem;
+      font-size: 1.2rem;
       font-weight: 700;
       color: var(--accent);
       margin-top: 16px;
@@ -487,16 +485,55 @@
       letter-spacing: -0.02em;
     }
 
-    .intro-image {
+    .intro-stats-image {
       display: flex;
-      justify-content: center;
       align-items: center;
+      gap: 48px;
+      background: var(--bg-glass);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--bg-glass-border);
+      border-radius: var(--radius);
+      padding: 32px 40px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .intro-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px 48px;
+      flex: 1;
+    }
+
+    .intro-stats .stat {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .intro-stats .stat .number {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1.2;
+    }
+
+    .intro-stats .stat .label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 400;
+      line-height: 1.4;
+    }
+
+    .intro-image {
+      flex-shrink: 0;
     }
 
     .intro-image .avatar-frame {
-      width: 100%;
-      max-width: 360px;
-      aspect-ratio: 1/1;
+      width: 140px;
+      height: 140px;
       border-radius: 50%;
       background: linear-gradient(135deg, var(--accent-dim), transparent 70%);
       padding: 3px;
@@ -511,7 +548,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 6.5rem;
+      font-size: 4rem;
       font-weight: 300;
       color: var(--accent);
       border: 1px solid rgba(91, 208, 247, 0.06);
@@ -725,6 +762,7 @@
       border: 1px solid var(--bg-glass-border);
       border-radius: var(--radius);
       transition: var(--transition);
+      position: relative;
     }
 
     .case-card:hover {
@@ -798,6 +836,30 @@
     .case-card .case-tools strong {
       color: var(--text-secondary);
       font-weight: 600;
+    }
+
+    .case-study-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 18px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent);
+      transition: var(--transition);
+      font-family: var(--font-body);
+      border-bottom: 1px solid transparent;
+    }
+
+    .case-study-link:hover {
+      color: #8ae0ff;
+      border-bottom-color: var(--accent);
+      gap: 14px;
+    }
+
+    .case-study-link i {
+      font-size: 0.75rem;
+      transition: var(--transition);
     }
 
     /* ─── HOW WE WORK ─── */
@@ -958,157 +1020,133 @@
       padding-bottom: 60px;
     }
 
-    .contact-wrapper {
+    .contact-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 48px;
-      align-items: start;
+      gap: 24px;
+      max-width: 700px;
+      margin: 0 auto;
     }
 
-    .contact-info h4 {
-      font-size: 1.2rem;
-      font-weight: 700;
-      margin-bottom: 12px;
-      font-family: var(--font-heading);
-    }
-
-    .contact-info p {
-      color: var(--text-secondary);
-      margin-bottom: 28px;
-      line-height: 1.8;
-      font-family: var(--font-body);
-    }
-
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 16px;
-    }
-
-    .contact-item .icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background: var(--accent-dim);
-      border: 1px solid rgba(91, 208, 247, 0.04);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--accent);
-      font-size: 1rem;
-      flex-shrink: 0;
-      transition: var(--transition);
-    }
-
-    .contact-item:hover .icon {
-      background: rgba(91, 208, 247, 0.15);
-      border-color: rgba(91, 208, 247, 0.10);
-    }
-
-    .contact-item .text {
-      font-size: 0.95rem;
-      font-family: var(--font-body);
-    }
-
-    .contact-item .text .label {
-      font-size: 0.65rem;
-      color: var(--text-muted);
-      display: block;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .social-links {
-      display: flex;
-      gap: 14px;
-      margin-top: 24px;
-    }
-
-    .social-links a {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background: var(--bg-glass);
-      border: 1px solid var(--bg-glass-border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text-secondary);
-      font-size: 1.1rem;
-      transition: var(--transition);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-    }
-
-    .social-links a:hover {
-      color: var(--accent);
-      border-color: var(--accent);
-      background: var(--accent-dim);
-      transform: translateY(-3px);
-      box-shadow: 0 8px 24px rgba(91, 208, 247, 0.06);
-    }
-
-    .contact-form {
-      padding: 36px 32px;
+    .contact-card {
       background: var(--bg-glass);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border: 1px solid var(--bg-glass-border);
       border-radius: var(--radius);
+      padding: 32px 28px;
+      text-align: center;
+      transition: var(--transition);
     }
 
-    .contact-form .form-group {
-      margin-bottom: 18px;
+    .contact-card:hover {
+      background: var(--bg-card-hover);
+      border-color: rgba(91, 208, 247, 0.08);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-card);
     }
 
-    .contact-form label {
-      display: block;
-      font-size: 0.75rem;
+    .contact-card .icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--accent-dim);
+      border: 1px solid rgba(91, 208, 247, 0.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 14px;
+      color: var(--accent);
+      font-size: 1.3rem;
+      transition: var(--transition);
+    }
+
+    .contact-card:hover .icon {
+      background: rgba(91, 208, 247, 0.15);
+      border-color: rgba(91, 208, 247, 0.12);
+    }
+
+    .contact-card .label {
+      font-size: 0.65rem;
       font-weight: 600;
-      margin-bottom: 6px;
-      color: var(--text-secondary);
-      font-family: var(--font-body);
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.8px;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 4px;
+      font-family: var(--font-body);
     }
 
-    .contact-form input,
-    .contact-form textarea {
-      width: 100%;
-      padding: 14px 18px;
-      border-radius: var(--radius-sm);
-      border: 1px solid var(--bg-glass-border);
-      background: rgba(0, 0, 0, 0.3);
+    .contact-card .value {
+      font-size: 1rem;
       color: var(--text-primary);
       font-family: var(--font-body);
-      font-size: 0.95rem;
+      word-break: break-word;
+    }
+
+    .contact-card .value a {
+      color: var(--text-primary);
       transition: var(--transition);
-      outline: none;
     }
 
-    .contact-form input:focus,
-    .contact-form textarea:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 4px var(--accent-dim);
-      background: rgba(0, 0, 0, 0.4);
+    .contact-card .value a:hover {
+      color: var(--accent);
     }
 
-    .contact-form input::placeholder,
-    .contact-form textarea::placeholder {
+    .contact-social {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 24px 28px;
+      background: var(--bg-glass);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--bg-glass-border);
+      border-radius: var(--radius);
+      transition: var(--transition);
+    }
+
+    .contact-social:hover {
+      background: var(--bg-card-hover);
+      border-color: rgba(91, 208, 247, 0.08);
+    }
+
+    .contact-social .label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
       color: var(--text-muted);
+      display: block;
+      margin-bottom: 14px;
+      font-family: var(--font-body);
     }
 
-    .contact-form textarea {
-      min-height: 120px;
-      resize: vertical;
-    }
-
-    .contact-form .btn {
-      width: 100%;
+    .contact-social .social-links {
+      display: flex;
       justify-content: center;
-      margin-top: 4px;
+      gap: 16px;
+    }
+
+    .contact-social .social-links a {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--bg-glass);
+      border: 1px solid var(--bg-glass-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-secondary);
+      font-size: 1.2rem;
+      transition: var(--transition);
+    }
+
+    .contact-social .social-links a:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+      background: var(--accent-dim);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(91, 208, 247, 0.06);
     }
 
     /* ─── FOOTER ─── */
@@ -1167,18 +1205,23 @@
 
     /* ─── RESPONSIVE ─── */
     @media (max-width: 992px) {
-      .intro-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
+      .contact-grid {
+        max-width: 500px;
+      }
+
+      .intro-stats-image {
+        flex-direction: column-reverse;
+        text-align: center;
+        padding: 28px;
+      }
+
+      .intro-stats {
+        justify-content: center;
       }
 
       .intro-image .avatar-frame {
-        max-width: 240px;
-      }
-
-      .contact-wrapper {
-        grid-template-columns: 1fr;
-        gap: 36px;
+        width: 120px;
+        height: 120px;
       }
 
       .case-grid {
@@ -1212,6 +1255,15 @@
         grid-template-columns: 1fr;
       }
 
+      .contact-grid {
+        grid-template-columns: 1fr;
+        max-width: 380px;
+      }
+
+      .contact-social {
+        grid-column: 1;
+      }
+
       .tools-table th,
       .tools-table td {
         padding: 12px 18px;
@@ -1226,10 +1278,6 @@
         padding: 18px 20px;
       }
 
-      .contact-form {
-        padding: 24px 20px;
-      }
-
       .case-card {
         padding: 24px 20px;
       }
@@ -1242,6 +1290,18 @@
       .geo-ring-2,
       .geo-ring-3 {
         display: none;
+      }
+
+      .intro-stats-image {
+        padding: 20px;
+      }
+
+      .intro-stats {
+        gap: 16px 24px;
+      }
+
+      .intro-stats .stat .number {
+        font-size: 1.4rem;
       }
     }
 
@@ -1290,7 +1350,13 @@
         overflow-x: auto;
       }
 
-      .social-links {
+      .intro-stats-image {
+        flex-direction: column-reverse;
+        align-items: center;
+        padding: 18px;
+      }
+
+      .contact-social .social-links {
         flex-wrap: wrap;
       }
     }
@@ -1321,12 +1387,11 @@
         I'm <span class="highlight">Mmedara Umana</span>
       </h1>
       <p class="subhead">
-        I build alongside leaders who have outgrown their systems —
-        bringing order, clarity, and momentum to your operations.
+        I turn complexity into clarity so you can focus on what matters
       </p>
       <div class="hero-cta">
         <a href="#contact" class="btn btn-primary">
-          <i class="fas fa-paper-plane"></i> Let's build together
+          <i class="fas fa-paper-plane"></i> Let's connect
         </a>
         <a href="#offer" class="btn btn-outline">
           <i class="fas fa-chevron-right"></i> Explore my offer
@@ -1344,29 +1409,56 @@
     ════════════════════════════════════════════════ -->
   <section id="intro">
     <div class="container">
-      <div class="intro-grid">
-        <div class="intro-text">
-          <span class="section-label">Introduction</span>
-          <h2 class="section-title">
-            Building <span class="highlight">calm, smooth,</span> productive ways of working
-          </h2>
-          <p>
-            I'm Mmedara Umana, and I build alongside leaders, founders, and teams
-            who have outgrown their existing systems and need a partner to bring
-            <strong>order, clarity, and momentum</strong> to their operations.
-          </p>
-          <p>
-            Whether you need high-level executive support, operational coordination,
-            or a strategic partner to keep projects moving, I adapt to what you need.
-            I don't just take tasks. I build systems that work whether I'm in the
-            room or not.
-          </p>
-          <p>
-            I work with leaders across creative, tech, nonprofit, and founder-led
-            organisations — where every hour saved on administration means more
-            time for impact.
-          </p>
-          <div class="signoff">— Let's build together.</div>
+
+      <div class="intro-text">
+        <span class="section-label">About me</span>
+        <h2 class="section-title">Building systems that <span class="highlight">empower people</span></h2>
+
+        <p>
+          I'm Mmedara Umana, and I think of myself as a co-creator. I build alongside leaders, founders, and teams who
+          are looking to bring clarity to their operations. Whether you need high-level executive support, operational
+          coordination, or a strategic partner to keep projects moving, I adapt to what you need.
+        </p>
+
+        <p>
+          I genuinely enjoy the quiet work of building systems that run smoothly whether I'm in the room or not.
+        </p>
+
+        <p>
+          To me, the true test of my impact is how much I simplify the lives and processes of the teams and executives I
+          support. A good system should work regardless of my presence. It should empower a team, not create an
+          unhealthy reliance or become a bottleneck that slows things down when I'm not there.
+        </p>
+
+        <p>
+          I'm drawn to this work because I believe great systems are the quiet driving force behind every great
+          organisation. They let people focus on what matters most and that is exactly what I want to help you do.
+        </p>
+
+        <p>
+          I work with leaders across creative, tech, nonprofit, and founder-led organisations—where every hour saved on
+          administration means more time for impact. Here is what I co-create with you: a calm, smooth, productive way
+          of working where logistics disappear into the background. You focus on what only you can do and I handle the
+          rest.
+        </p>
+
+        <div class="signoff">— Let's build together.</div>
+      </div>
+
+      <div class="intro-stats-image">
+        <div class="intro-stats">
+          <div class="stat">
+            <span class="number">12+</span>
+            <span class="label">hours freed weekly<br />for executives</span>
+          </div>
+          <div class="stat">
+            <span class="number">3–7 days</span>
+            <span class="label">→ 2 hours<br />client processing</span>
+          </div>
+          <div class="stat">
+            <span class="number">8+</span>
+            <span class="label">years of<br />experience</span>
+          </div>
         </div>
         <div class="intro-image">
           <div class="avatar-frame">
@@ -1376,6 +1468,7 @@
           </div>
         </div>
       </div>
+
     </div>
   </section>
 
@@ -1569,6 +1662,7 @@
           <div class="case-tools">
             <strong>Tools:</strong> HTML/CSS/JS, company email integration, shared dashboard
           </div>
+          <a href="#" class="case-study-link">View Project <i class="fas fa-arrow-right"></i></a>
         </div>
 
         <div class="case-card">
@@ -1587,6 +1681,7 @@
           <div class="case-tools">
             <strong>Tools:</strong> Notion, Trello, Asana, ClickUp (tool-agnostic)
           </div>
+          <a href="#" class="case-study-link">View Project <i class="fas fa-arrow-right"></i></a>
         </div>
 
         <div class="case-card">
@@ -1605,24 +1700,28 @@
           <div class="case-tools">
             <strong>Tools:</strong> Gmail / Outlook (native filters &amp; rules)
           </div>
+          <a href="#" class="case-study-link">View Project <i class="fas fa-arrow-right"></i></a>
         </div>
 
+        <!-- ─── UPDATED: SHORTENED TRAVEL MANAGEMENT CASE STUDY ─── -->
         <div class="case-card">
-          <span class="case-tag">Travel</span>
-          <h4>Travel Management Packet</h4>
+          <span class="case-tag">Full-Stack Application</span>
+          <h4>Executive Travel Management Platform</h4>
           <p>
-            A single, reusable travel packet that puts everything in one place:
-            budget breakdown, pre-departure checklist, detailed itinerary, local
-            support, time zone adjustments, and contingency plans.
+            A self-contained Python application for executive travel management. It enables a single EA to manage
+            multiple executives — storing travel profiles and generating itineraries, expense reports, and spending
+            dashboards. Features include full CRUD, custom categories, receipt attachments, multi-city stops, and Excel
+            exports. 100% local — no cloud fees or API subscriptions.
           </p>
           <div class="case-result">
-            <span><i class="fas fa-plane"></i> Stress-free travel</span>
-            <span><i class="fas fa-file-pdf"></i> Everything in one PDF</span>
-            <span><i class="fas fa-hourglass-half"></i> Saves 2–3 hours per trip</span>
+            <span><i class="fas fa-cloud-upload-alt"></i> 100% local — no cloud fees</span>
+            <span><i class="fas fa-database"></i> All data stays on your machine</span>
+            <span><i class="fas fa-file-excel"></i> Excel exports for everything</span>
           </div>
           <div class="case-tools">
-            <strong>Tools:</strong> Google Docs, Zoho Expense, Google Calendar
+            <strong>Tools:</strong> Python, SQLite, HTML/CSS/JS, openpyxl
           </div>
+          <a href="#" class="case-study-link">View Project <i class="fas fa-arrow-right"></i></a>
         </div>
 
         <div class="case-card">
@@ -1641,6 +1740,7 @@
           <div class="case-tools">
             <strong>Tools:</strong> Google Sheets, WhatsApp, Google Forms
           </div>
+          <a href="#" class="case-study-link">View Project <i class="fas fa-arrow-right"></i></a>
         </div>
       </div>
     </div>
@@ -1790,58 +1890,33 @@
           Let's talk about how we can build the systems you need, together.
         </p>
       </div>
-      <div class="contact-wrapper">
-        <div class="contact-info">
-          <h4>Reach out</h4>
-          <p>
-            Whether you're a founder, a leader, or a team ready to scale —
-            I'd love to hear about your vision and your challenges.
-          </p>
-          <div class="contact-item">
-            <div class="icon"><i class="fas fa-envelope"></i></div>
-            <div class="text">
-              <span class="label">Email</span>
-              umana.mmedara@gmail.com
-            </div>
+
+      <div class="contact-grid">
+        <!-- Email -->
+        <div class="contact-card">
+          <div class="icon"><i class="fas fa-envelope"></i></div>
+          <span class="label">Email</span>
+          <div class="value">
+            <a href="mailto:umana.mmedara@gmail.com">umana.mmedara@gmail.com</a>
           </div>
-          <div class="contact-item">
-            <div class="icon"><i class="fas fa-phone-alt"></i></div>
-            <div class="text">
-              <span class="label">Phone</span>
-              <span style="color:var(--text-secondary);">+234 (0) 80 1234 5678</span>
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
-            <div class="text">
-              <span class="label">Location</span>
-              <span style="color:var(--text-secondary);">Remote · Worldwide</span>
-            </div>
-          </div>
+        </div>
+
+        <!-- Location -->
+        <div class="contact-card">
+          <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
+          <span class="label">Location</span>
+          <div class="value">Remote · Worldwide</div>
+        </div>
+
+        <!-- Social Links -->
+        <div class="contact-social">
+          <span class="label">Find me online</span>
           <div class="social-links">
             <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
             <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
-            <a href="#" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
             <a href="#" aria-label="Meeting Link"><i class="fas fa-calendar-plus"></i></a>
           </div>
         </div>
-        <form class="contact-form" id="contactForm">
-          <div class="form-group">
-            <label for="name">Your name</label>
-            <input type="text" id="name" placeholder="e.g. Adeola O." required />
-          </div>
-          <div class="form-group">
-            <label for="email">Email address</label>
-            <input type="email" id="email" placeholder="you@example.com" required />
-          </div>
-          <div class="form-group">
-            <label for="message">Tell me about your needs</label>
-            <textarea id="message" placeholder="What's the biggest challenge you're facing right now?"></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary">
-            <i class="fas fa-paper-plane"></i> Send message
-          </button>
-        </form>
       </div>
     </div>
   </section>
@@ -1854,7 +1929,6 @@
       <div class="socials">
         <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
         <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
-        <a href="#" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
         <a href="#" aria-label="Meeting Link"><i class="fas fa-calendar-plus"></i></a>
       </div>
       <p>
@@ -1866,7 +1940,7 @@
   </footer>
 
   <!-- ───────────────────────────────────────────────────────────────
-    JAVASCRIPT
+    JAVASCRIPT — particle + parallax
     ─────────────────────────────────────────────────────────────── -->
   <script>
     (function () {
@@ -1996,26 +2070,7 @@
       window.addEventListener('resize', updateParallax, { passive: true });
       requestAnimationFrame(updateParallax);
 
-      /* ─── 3. CONTACT FORM ─── */
-      const form = document.getElementById('contactForm');
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const name = document.getElementById('name').value.trim();
-        const email = document.getElementById('email').value.trim();
-        const message = document.getElementById('message').value.trim();
-        if (!name || !email || !message) {
-          alert('Please fill out all fields.');
-          return;
-        }
-        if (!email.includes('@') || !email.includes('.')) {
-          alert('Please enter a valid email address.');
-          return;
-        }
-        alert(`Thank you, ${name}! Your message has been sent. I'll be in touch soon.`);
-        form.reset();
-      });
-
-      /* ─── 4. SMOOTH SCROLL ─── */
+      /* ─── 3. SMOOTH SCROLL ─── */
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
           const href = this.getAttribute('href');
