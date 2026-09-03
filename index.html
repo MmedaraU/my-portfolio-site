@@ -6,10 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mmedara Umana · Executive &amp; Operations Partner</title>
 
-  <!-- Google Fonts: Glamore (Playfair Display) + Inter -->
+  <!-- Google Fonts: DM Serif Display + DM Sans -->
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=DM+Serif+Display:ital@0;1&display=swap"
     rel="stylesheet" />
+  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
 
   <!-- Font Awesome 6 (free) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
@@ -47,8 +48,8 @@
       --transition: 0.5s cubic-bezier(0.23, 1, 0.32, 1);
       --shadow-card: 0 12px 48px rgba(0, 0, 0, 0.5);
       --shadow-glow: 0 0 60px rgba(91, 208, 247, 0.06);
-      --font-heading: 'Playfair Display', 'Georgia', serif;
-      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-heading: 'DM Serif Display', 'Georgia', serif;
+      --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       --border-subtle: rgba(255, 255, 255, 0.04);
     }
 
@@ -504,6 +505,8 @@
       flex-wrap: wrap;
       gap: 24px 48px;
       flex: 1;
+      justify-content: center;
+      text-align: center;
     }
 
     .intro-stats .stat {
@@ -525,34 +528,6 @@
       color: var(--text-muted);
       font-weight: 400;
       line-height: 1.4;
-    }
-
-    .intro-image {
-      flex-shrink: 0;
-    }
-
-    .intro-image .avatar-frame {
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent-dim), transparent 70%);
-      padding: 3px;
-      box-shadow: var(--shadow-glow);
-    }
-
-    .intro-image .avatar-frame .avatar-inner {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      background: var(--bg-primary);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 4rem;
-      font-weight: 300;
-      color: var(--accent);
-      border: 1px solid rgba(91, 208, 247, 0.06);
-      font-family: var(--font-heading);
     }
 
     /* ─── MY OFFER ─── */
@@ -862,6 +837,37 @@
       transition: var(--transition);
     }
 
+    /* Case Study Images - 2 per card */
+    .case-images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .case-images .case-image {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--bg-glass-border);
+      background: var(--bg-secondary);
+    }
+
+    .case-images .case-image:only-child {
+      grid-column: 1 / -1;
+    }
+
+    /* Full-width case gets larger images */
+    .case-card.full .case-images {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .case-card.full .case-images .case-image {
+      aspect-ratio: 16 / 9;
+    }
+
     /* ─── HOW WE WORK ─── */
     #work-together {
       background: var(--bg-primary);
@@ -1125,6 +1131,7 @@
       display: flex;
       justify-content: center;
       gap: 16px;
+      flex-wrap: wrap;
     }
 
     .contact-social .social-links a {
@@ -1147,6 +1154,11 @@
       background: var(--accent-dim);
       transform: translateY(-3px);
       box-shadow: 0 8px 24px rgba(91, 208, 247, 0.06);
+    }
+
+    .contact-social .cv-link {
+      margin-top: 16px;
+      display: inline-block;
     }
 
     /* ─── FOOTER ─── */
@@ -1210,18 +1222,13 @@
       }
 
       .intro-stats-image {
-        flex-direction: column-reverse;
+        flex-direction: column;
         text-align: center;
         padding: 28px;
       }
 
       .intro-stats {
         justify-content: center;
-      }
-
-      .intro-image .avatar-frame {
-        width: 120px;
-        height: 120px;
       }
 
       .case-grid {
@@ -1280,6 +1287,11 @@
 
       .case-card {
         padding: 24px 20px;
+      }
+
+      .case-images {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
       }
 
       .work-block {
@@ -1351,13 +1363,17 @@
       }
 
       .intro-stats-image {
-        flex-direction: column-reverse;
+        flex-direction: column;
         align-items: center;
         padding: 18px;
       }
 
       .contact-social .social-links {
         flex-wrap: wrap;
+      }
+
+      .case-images {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -1387,7 +1403,7 @@
         I'm <span class="highlight">Mmedara Umana</span>
       </h1>
       <p class="subhead">
-        I turn complexity into clarity — so you can focus on what matters
+        I turn complexity into clarity so you can focus on what matters
       </p>
       <div class="hero-cta">
         <a href="#contact" class="btn btn-primary">
@@ -1395,6 +1411,10 @@
         </a>
         <a href="#offer" class="btn btn-outline">
           <i class="fas fa-chevron-right"></i> Explore my offer
+        </a>
+        <a href="https://drive.google.com/file/d/10OZJIqHr1AiKa_JMiQWBwMi5ozlMICbN/view?usp=drive_link"
+          class="btn btn-outline" target="_blank">
+          <i class="fas fa-file-pdf"></i> View CV
         </a>
       </div>
     </div>
@@ -1415,30 +1435,14 @@
         <h2 class="section-title">Building systems that <span class="highlight">empower people</span></h2>
 
         <p>
-          I'm Mmedara Umana, and I think of myself as a co-creator. I build alongside leaders, founders, and teams who
-          are looking to bring clarity to their operations. Whether you need high-level executive support, operational
-          coordination, or a strategic partner to keep projects moving, I adapt to what you need.
+          I'm Mmedara Umana, a co-creator who builds alongside leaders to bring clarity to their operations. I design
+          systems that work seamlessly; whether I'm in the room or not, teams stay empowered, not dependent.
         </p>
 
         <p>
-          I genuinely enjoy the quiet work of building systems that run smoothly whether I'm in the room or not.
-        </p>
-
-        <p>
-          To me, the true test of my impact is how much I simplify the lives and processes of the teams and executives I
-          support. A good system should work regardless of my presence. It should empower a team, not create an
-          unhealthy reliance or become a bottleneck that slows things down when I'm not there.
-        </p>
-
-        <p>
-          I'm drawn to this work because I believe great systems are the quiet driving force behind every great
-          organisation. They let people focus on what matters most and that is exactly what I want to help you do.
-        </p>
-
-        <p>
-          I work with leaders across creative, tech, nonprofit, and founder-led organisations—where every hour saved on
+          I work with leaders across creative, tech, nonprofit, and founder-led organisations, where every hour saved on
           administration means more time for impact. Here is what I co-create with you: a calm, smooth, productive way
-          of working where logistics disappear into the background. You focus on what only you can do and I handle the
+          of working where logistics disappear into the background. You focus on what only you can do, and I handle the
           rest.
         </p>
 
@@ -1456,15 +1460,8 @@
             <span class="label">→ 2 hours<br />client processing</span>
           </div>
           <div class="stat">
-            <span class="number">8+</span>
-            <span class="label">years of<br />experience</span>
-          </div>
-        </div>
-        <div class="intro-image">
-          <div class="avatar-frame">
-            <div class="avatar-inner">
-              <i class="fas fa-user-circle"></i>
-            </div>
+            <span class="number">1+</span>
+            <span class="label">year of<br />experience</span>
           </div>
         </div>
       </div>
@@ -1557,7 +1554,8 @@
             </tr>
             <tr>
               <td>Productivity &amp; Task Management</td>
-              <td>Notion, Trello, Microsoft Office 365, Google Workspace, Zoho Workspace</td>
+              <td>Notion, Trello, Microsoft Office 365, Google Workspace, Zoho Workspace, Asana, ClickUp, Airtable,
+                Jira, Todoist</td>
             </tr>
             <tr>
               <td>Travel &amp; Expense</td>
@@ -1565,15 +1563,19 @@
             </tr>
             <tr>
               <td>Document Management</td>
-              <td>Google Drive, DocuSign, Adobe Acrobat</td>
+              <td>Google Drive, DocuSign, Adobe Acrobat, Dropbox, OneDrive</td>
             </tr>
             <tr>
               <td>Security</td>
-              <td>LastPass, KeePass, Bitwarden</td>
+              <td>LastPass, KeePass, Bitwarden, 1Password</td>
             </tr>
             <tr>
               <td>Design &amp; Content</td>
-              <td>Canva</td>
+              <td>Canva, Figma, Loom, CapCut</td>
+            </tr>
+            <tr>
+              <td>Collaboration</td>
+              <td>Miro</td>
             </tr>
             <tr>
               <td>AI &amp; Automation</td>
@@ -1632,7 +1634,7 @@
   </section>
 
   <!-- ════════════════════════════════════════════════
-    CASE STUDIES
+    CASE STUDIES — Reordered, new Calendar Management added, links removed from specified cards
     ════════════════════════════════════════════════ -->
   <section id="case-studies">
     <div class="container">
@@ -1644,8 +1646,40 @@
         </p>
       </div>
       <div class="case-grid">
+        <!-- 1. Executive Travel Management Platform (now full width) -->
         <div class="case-card full">
+          <span class="case-tag">Operations Hub</span>
+          <div class="case-images">
+            <img src="img/placeholder.png" alt="Placeholder 1 for Executive Travel Management Platform"
+              class="case-image" />
+            <img src="img/placeholder.png" alt="Placeholder 2 for Executive Travel Management Platform"
+              class="case-image" />
+          </div>
+          <h4>Executive Travel Management Platform</h4>
+          <p>
+            A centralized hub that eliminates the chaos of scattered spreadsheets, documents, and emails. It allows
+            seamless management of complex, multi-city itineraries for multiple executives, automatically generating
+            professional reports and tracking expenses in real-time. Data stays secure and local, ensuring complete
+            control and peace of mind.
+          </p>
+          <div class="case-result">
+            <span><i class="fas fa-cloud-upload-alt"></i> 100% local — no cloud fees</span>
+            <span><i class="fas fa-database"></i> All data stays on your machine</span>
+            <span><i class="fas fa-file-excel"></i> Excel exports for everything</span>
+          </div>
+          <div class="case-tools">
+            <strong>Tools:</strong> Python, SQLite, HTML/CSS/JS, openpyxl
+          </div>
+          <a href="#" class="case-study-link">View Project <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <!-- 2. Client Intake System (link removed) -->
+        <div class="case-card">
           <span class="case-tag">Custom Build</span>
+          <div class="case-images">
+            <img src="img/cs-intake-1.png" alt="Placeholder 1 for Client Intake System" class="case-image" />
+            <img src="img/cs-intake-2.jpg" alt="Placeholder 2 for Client Intake System" class="case-image" />
+          </div>
           <h4>Client Intake System</h4>
           <p>
             Built a complete intake system on top of the company's existing domain.
@@ -1662,11 +1696,15 @@
           <div class="case-tools">
             <strong>Tools:</strong> HTML/CSS/JS, company email integration, shared dashboard
           </div>
-          <a href="#" class="case-study-link">View Project <i class="fas fa-arrow-right"></i></a>
+          <!-- Link removed per request -->
         </div>
 
+        <!-- 3. The Command Center (keeps link) -->
         <div class="case-card">
           <span class="case-tag">Template System</span>
+          <div class="case-images">
+            <img src="img/cs-notion.png" alt="Placeholder 1 for The Command Center" class="case-image" />
+          </div>
           <h4>The Command Center</h4>
           <p>
             A Notion dashboard template for executive clarity — adapted to Trello,
@@ -1681,11 +1719,17 @@
           <div class="case-tools">
             <strong>Tools:</strong> Notion, Trello, Asana, ClickUp (tool-agnostic)
           </div>
-          <a href="#" class="case-study-link">View Project <i class="fas fa-arrow-right"></i></a>
+          <a href="https://app.notion.com/p/Executive-s-Dashboard-29a190465dd6816ba885db4d8cdb9b02?source=copy_link"
+            class="case-study-link">View Project <i class="fas fa-arrow-right"></i></a>
         </div>
 
+        <!-- 4. Inbox Zero System (link removed) -->
         <div class="case-card">
           <span class="case-tag">Email Management</span>
+          <div class="case-images">
+            <img src="img//cs-email-1.png" alt="Placeholder 1 for Inbox Zero System" class="case-image" />
+            <img src="img/cs-email-2.png" alt="Placeholder 2 for Inbox Zero System" class="case-image" />
+          </div>
           <h4>Inbox Zero System</h4>
           <p>
             A reusable email management system based on Inbox Zero, adapted for
@@ -1700,32 +1744,38 @@
           <div class="case-tools">
             <strong>Tools:</strong> Gmail / Outlook (native filters &amp; rules)
           </div>
-          <a href="#" class="case-study-link">View Project <i class="fas fa-arrow-right"></i></a>
+          <!-- Link removed per request -->
         </div>
 
-        <!-- Travel Management Case Study -->
+        <!-- 5. Calendar Management (new) -->
         <div class="case-card">
-          <span class="case-tag">Full-Stack Application</span>
-          <h4>Executive Travel Management Platform</h4>
+          <span class="case-tag">Calendar Management</span>
+          <div class="case-images">
+            <img src="img/cs-calendar.png" alt="Calendar management placeholder 2" class="case-image" />
+          </div>
+          <h4>Calendar Management System</h4>
           <p>
-            A self-contained Python application for executive travel management. It enables a single EA to manage
-            multiple executives — storing travel profiles and generating itineraries, expense reports, and spending
-            dashboards. Features include full CRUD, custom categories, receipt attachments, multi-city stops, and Excel
-            exports. 100% local — no cloud fees or API subscriptions.
+            A systematic approach that gives you a clear, visual snapshot of your week. Each appointment type gets its
+            own color—meetings, client calls, deep work, and travel are instantly recognizable. I proactively block
+            focus time between meetings to protect your energy and ensure space for strategic work. For any travel, I
+            map out every step—from departure to check-in—so you can focus on being present, not on logistics. The
+            result: you spend less time managing your time and more time leading with clarity.
           </p>
           <div class="case-result">
-            <span><i class="fas fa-cloud-upload-alt"></i> 100% local — no cloud fees</span>
-            <span><i class="fas fa-database"></i> All data stays on your machine</span>
-            <span><i class="fas fa-file-excel"></i> Excel exports for everything</span>
+            <span><i class="fas fa-palette"></i> Color-coded calendar for instant clarity</span>
+            <span><i class="fas fa-clock"></i> Proactive focus time blocking</span>
+            <span><i class="fas fa-route"></i> End-to-end travel mapping</span>
           </div>
           <div class="case-tools">
-            <strong>Tools:</strong> Python, SQLite, HTML/CSS/JS, openpyxl
+            <strong>Tools:</strong> Google Calendar / Outlook
           </div>
-          <a href="#" class="case-study-link">View Project <i class="fas fa-arrow-right"></i></a>
+          <!-- Link removed per request -->
         </div>
 
+        <!-- 6. Two Cities, One Weekend (link removed) -->
         <div class="case-card">
           <span class="case-tag">Event Coordination</span>
+          <!-- images removed per user request (commented out) -->
           <h4>Two Cities, One Weekend</h4>
           <p>
             Organised two beneficiary events in two cities over one weekend.
@@ -1740,14 +1790,14 @@
           <div class="case-tools">
             <strong>Tools:</strong> Google Sheets, WhatsApp, Google Forms
           </div>
-          <a href="#" class="case-study-link">View Project <i class="fas fa-arrow-right"></i></a>
+          <!-- Link removed per request -->
         </div>
       </div>
     </div>
   </section>
 
   <!-- ════════════════════════════════════════════════
-    HOW WE WORK — FIXED REPORTING STYLE ICON
+    HOW WE WORK
     ════════════════════════════════════════════════ -->
   <section id="work-together">
     <div class="container">
@@ -1791,7 +1841,6 @@
           </ul>
         </div>
         <div class="work-block">
-          <!-- FIXED: changed fa-chart-simple to fa-chart-pie -->
           <h4><i class="fas fa-chart-pie"></i> Reporting Style</h4>
           <ul>
             <li><strong>Inbox &amp; Calendar Reports:</strong> End-of-day summary of emails handled, meetings booked,
@@ -1909,13 +1958,23 @@
           <div class="value">Remote · Worldwide</div>
         </div>
 
-        <!-- Social Links -->
+        <!-- Social Links + CV -->
         <div class="contact-social">
           <span class="label">Find me online</span>
           <div class="social-links">
-            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
-            <a href="#" aria-label="Meeting Link"><i class="fas fa-calendar-plus"></i></a>
+            <a href="https://www.linkedin.com/in/mmedara-umana-7627041b6/" target="_blank" aria-label="LinkedIn"><i
+                class="fab fa-linkedin-in"></i></a>
+            <a href="https://github.com/MmedaraU" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ015GXbfdCFL4nr3s-8qG-xPbqKeaELvljzM3fDFdazZTyLrslFaqj2jkKzaYba2KHTWamYFBhz"
+              target="_blank" aria-label="Meeting Link"><i class="fas fa-calendar-plus"></i></a>
+            <a href="https://drive.google.com/file/d/10OZJIqHr1AiKa_JMiQWBwMi5ozlMICbN/view?usp=drive_link"
+              target="_blank" aria-label="View CV"><i class="fas fa-file-pdf"></i></a>
+          </div>
+          <div class="cv-link">
+            <a href="https://drive.google.com/file/d/10OZJIqHr1AiKa_JMiQWBwMi5ozlMICbN/view?usp=drive_link"
+              target="_blank" class="btn btn-outline" style="padding: 8px 28px; font-size: 0.85rem;">
+              <i class="fas fa-file-pdf"></i> View CV
+            </a>
           </div>
         </div>
       </div>
@@ -1928,9 +1987,13 @@
   <footer>
     <div class="container">
       <div class="socials">
-        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
-        <a href="#" aria-label="Meeting Link"><i class="fas fa-calendar-plus"></i></a>
+        <a href="https://www.linkedin.com/in/mmedara-umana-7627041b6/" target="_blank" aria-label="LinkedIn"><i
+            class="fab fa-linkedin-in"></i></a>
+        <a href="https://github.com/MmedaraU" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ015GXbfdCFL4nr3s-8qG-xPbqKeaELvljzM3fDFdazZTyLrslFaqj2jkKzaYba2KHTWamYFBhz"
+          target="_blank" aria-label="Meeting Link"><i class="fas fa-calendar-plus"></i></a>
+        <a href="https://drive.google.com/file/d/10OZJIqHr1AiKa_JMiQWBwMi5ozlMICbN/view?usp=drive_link" target="_blank"
+          aria-label="View CV"><i class="fas fa-file-pdf"></i></a>
       </div>
       <p>
         &copy; 2026 Mmedara Umana · Built with <i class="fas fa-heart"
